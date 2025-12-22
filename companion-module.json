@@ -1,0 +1,12 @@
+{
+  "$schema": "https://companion.dev/schemas/module.json",
+  "id": "twoloox-pandorasbox",
+  "name": "twoloox Pandoras Box",
+  "shortname": "twoloox-pandorasbox",
+  "description": "Control twoloox Pandoras Box V8 over the PandorasAutomation protocol.",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "twoloox GmbH",
+  "platforms": ["windows", "mac", "linux"],
+  "entrypoint": "./dist/index.js"
+}

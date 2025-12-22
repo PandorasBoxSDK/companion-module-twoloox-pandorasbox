@@ -1,0 +1,26 @@
+{
+	"id": "twoloox-pandorasbox",
+	"name": "twoloox-pandorasbox",
+	"shortname": "pandorasbox",
+	"description": "Control twoloox Pandoras Box V8 over the PandorasAutomation protocol.",
+	"version": "0.0.0",
+	"license": "MIT",
+	"repository": "",
+	"bugs": "",
+	"maintainers": [
+		{
+			"name": "Daniel Kaminski",
+			"email": "daniel.kaminski@twoloox.de"
+		}
+	],
+	"legacyIds": [],
+	"runtime": {
+		"type": "node18",
+		"api": "nodejs-ipc",
+		"apiVersion": "0.0.0",
+		"entrypoint": "../dist/index.js"
+	},
+	"manufacturer": "twoloox",
+	"products": ["Pandoras Box"],
+	"keywords": ["pandoras box", "twoloox", "pbau"]
+}
