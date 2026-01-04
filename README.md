@@ -1,6 +1,6 @@
 # companion-module-twoloox-pandorasbox
 
-Companion module for controlling **Christie/TwoLooX Pandoras Box** media servers via the **PandorasAutomation (PBAU)** TCP protocol.
+Companion module for controlling **twoloox Pandoras Box** media servers via the **PandorasAutomation (PBAU)** TCP protocol.
 
 ## Features
 
@@ -36,60 +36,6 @@ Companion module for controlling **Christie/TwoLooX Pandoras Box** media servers
 - **Pandoras Box:** v8.11.3
 
 ## Installation
-
-### For Development
-
-1. **Prerequisites:**
-   - Node.js 22+
-   - Yarn 4
-   - Git
-
-2. **Clone and Install:**
-   ```powershell
-   git clone https://github.com/PandorasBoxSDK/companion-module-twoloox-pandorasbox.git
-   cd companion-module-twoloox-pandorasbox
-   yarn install
-   ```
-
-3. **Build:**
-   ```powershell
-   yarn build
-   ```
-
-4. **Link to Companion (Development Setup):**
-   
-   **Option A: Using companion-module-dev-link**
-   ```powershell
-   # Install the dev link tool globally
-   npm install -g @companion-module/dev-link
-   
-   # Link this module to Companion
-   companion-module-dev-link add twoloox-pandorasbox
-   ```
-   
-   **Option B: Manual Symlink**
-   ```powershell
-   # Windows (as Administrator)
-   cd "C:\Users\<USERNAME>\companion-module-dev"
-   mklink /D "companion-module-twoloox-pandorasbox" "C:\path\to\your\repo"
-   
-   # Restart Companion
-   ```
-
-5. **Start Companion in Dev Mode:**
-   ```powershell
-   # In Companion directory
-   yarn dev
-   ```
-
-6. **Watch for Changes (Optional):**
-   ```powershell
-   # In module directory
-   yarn dev
-   ```
-   Companion will auto-reload when you rebuild.
-
-### For Production
 
 Install directly in Companion via the module library (when published) or use the built `dist/` folder.
 
