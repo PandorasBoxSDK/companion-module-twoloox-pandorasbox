@@ -12,7 +12,7 @@
   "repository": "",
   "bugs": "",
   "maintainers": [{ "name": "Daniel Kaminski", "email": "daniel.kaminski@twoloox.de" }],
-  "legacyIds": [chrisite-pandorasbox],
+  "legacyIds": ["chrisite-pandorasbox"],
   "platforms": ["windows", "mac", "linux"],
   "runtime": {
     "type": "node18",
