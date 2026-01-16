@@ -5,8 +5,8 @@
 	"description": "Control twoloox Pandoras Box V8 and newer.",
 	"version": "3.0.1",
 	"license": "MIT",
-	"repository": "",
-	"bugs": "",
+	"repository": "git+https://github.com/bitfocus/companion-module-twoloox-pandorasbox.git",
+	"bugs": "https://github.com/bitfocus/companion-module-twoloox-pandorasbox/issues",
 	"maintainers": [
 		{
 			"name": "Daniel Kaminski",

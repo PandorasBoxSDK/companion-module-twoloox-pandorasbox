@@ -41,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/bitfocus/companion-module-twoloox-pandorasbox.git"
   },
   "packageManager": "yarn@4.9.1"
 }
