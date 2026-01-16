@@ -15,6 +15,10 @@ export interface CueInfo {
 }
 
 export interface PollHandlers {
+  /** Called once when we receive the first valid PBAU packet for the configured domain */
+  onProtocolAlive?: () => void
+  /** Called when the main TCP connection closes */
+  onDisconnected?: () => void
   onSequenceTime?: (seqId: number, h: number, m: number, s: number, f: number) => void
   onSequenceCountdown?: (seqId: number, h: number, m: number, s: number, f: number) => void
   onSequenceCueInfo?: (seqId: number, cueInfo: CueInfo) => void
@@ -283,6 +287,7 @@ export class PBClient {
   private currentStatusRequestId: number | null = null
   private statusRequestPending = false
   private sequenceStates: Map<number, TransportState> = new Map()
+  private gotAnyResponse = false
   
   // Per-sequence connections for timecode polling
   private sequenceConnections: Map<number, SequenceConnection> = new Map()
@@ -314,6 +319,7 @@ export class PBClient {
         this.connecting = false
         this.socket = null
         this.stopPolling()
+        this.pollHandlers.onDisconnected?.()
       })
 
       sock.on('data', (data) => this.handleData(data))
@@ -524,6 +530,11 @@ export class PBClient {
       if (data.toString('ascii', 0, 4) !== 'PBAU') return
       const domain = data.readInt32BE(5)
       if (domain !== this.domain) return
+
+      if (!this.gotAnyResponse) {
+        this.gotAnyResponse = true
+        this.pollHandlers.onProtocolAlive?.()
+      }
       const cmdId = data.readInt16BE(17)
       
       switch (cmdId) {

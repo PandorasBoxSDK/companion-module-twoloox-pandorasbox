@@ -277,7 +277,7 @@ export function GetActionsList(
       },
     },
     [ActionId.StoreActiveToBeginning]: {
-      name: 'Store Active to Sequence Beginning',
+      name: 'Store Active to Container Beginning',
       options: [
         {
           type: 'dropdown',

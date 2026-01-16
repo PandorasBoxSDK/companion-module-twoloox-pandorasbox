@@ -278,9 +278,9 @@ export function GetPresetsList(
   presets['prog_store_active_begin'] = {
     type: 'button',
     category: 'Programming',
-    name: 'Store Active to Beginning',
+    name: 'Store Active to Container Beginning',
     style: {
-      text: 'Store\nBeginning',
+      text: 'Store\nCont. Beg.',
       size: 'auto',
       color: Black,
       bgcolor: Orange,

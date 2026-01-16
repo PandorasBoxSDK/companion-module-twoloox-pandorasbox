@@ -2,18 +2,18 @@
 	"id": "twoloox-pandorasbox",
 	"name": "twoloox-pandorasbox",
 	"shortname": "pandorasbox",
-	"description": "Control twoloox Pandoras Box V8.",
-	"version": "4.0.0",
+	"description": "Control twoloox Pandoras Box V8 and newer.",
+	"version": "3.0.1",
 	"license": "MIT",
-	"repository": "",
-	"bugs": "",
+	"repository": "git+https://github.com/bitfocus/companion-module-twoloox-pandorasbox.git",
+	"bugs": "https://github.com/bitfocus/companion-module-twoloox-pandorasbox/issues",
 	"maintainers": [
 		{
 			"name": "Daniel Kaminski",
 			"email": "daniel.kaminski@twoloox.de"
 		}
 	],
-	"legacyIds": [],
+	"legacyIds": ["chrisite-pandorasbox"],
 	"runtime": {
 		"type": "node18",
 		"api": "nodejs-ipc",

@@ -91,7 +91,23 @@ class TwolooxPandorasInstance extends InstanceBase<DeviceConfig> {
     }
 
     this.updateStatus(InstanceStatus.Connecting)
+
+    let protocolAliveResolve: (() => void) | undefined
+    const protocolAlive = new Promise<void>((resolve) => {
+      protocolAliveResolve = resolve
+    })
+
     const client = new PBClient(host, domain, {
+      onProtocolAlive: () => {
+        protocolAliveResolve?.()
+        protocolAliveResolve = undefined
+      },
+      onDisconnected: () => {
+        // Only report disconnect if this is the active client
+        if (this.client === client) {
+          this.updateStatus(InstanceStatus.Disconnected, 'Disconnected from Pandoras Box')
+        }
+      },
       onTransport: (state) => {
         this.state.transport = state
       },
@@ -137,6 +153,17 @@ class TwolooxPandorasInstance extends InstanceBase<DeviceConfig> {
 
     try {
       await client.connect()
+
+      // TCP is connected at this point; now verify we also get a PBAU response for the configured domain.
+      this.log('info', 'TCP connected, verifying Pandoras Box protocol response...')
+      await client.refreshSequences()
+
+      const timeoutMs = 3000
+      await Promise.race([
+        protocolAlive,
+        new Promise<void>((_, reject) => setTimeout(() => reject(new Error('No response from Pandoras Box (check Domain)')), timeoutMs)),
+      ])
+
       this.updateStatus(InstanceStatus.Ok)
       this.log('info', 'Connected to Pandoras Box, requesting sequences...')
       // Fetch sequences immediately and then every 10 seconds
@@ -151,7 +178,9 @@ class TwolooxPandorasInstance extends InstanceBase<DeviceConfig> {
     } catch (e: any) {
       const msg = e?.message ?? 'Connect failed'
       this.log('error', msg)
-      this.updateStatus(InstanceStatus.UnknownError, msg)
+      // If we connected TCP but never got a protocol response, this often indicates a wrong domain.
+      this.updateStatus(InstanceStatus.BadConfig, msg)
+      client.disconnect()
     }
   }
 
